@@ -1,91 +1,269 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
+body {
   padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  background: linear-gradient(135deg, #f9f9f9, #e6e6e6);
+  background: linear-gradient(135deg, #fff5f0 0%, #ffe8e0 50%, #ffd4d4 100%);
   font-family: 'Open Sans', sans-serif !important;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
 
-h1{
-  font-size: 2rem;
+/* Animated background pattern */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(255, 99, 71, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(220, 20, 60, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 90%, rgba(255, 140, 0, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-family: 'Playfair Display', serif;
+  background: linear-gradient(135deg, #ff6347 0%, #dc143c 50%, #ff8c00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 20px rgba(255, 99, 71, 0.3);
+  letter-spacing: -0.5px;
+  animation: fadeInDown 0.6s ease-out;
 }
 
-.container{
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
   width: 80%;
   padding-bottom: 30px;
+  animation: fadeIn 0.8s ease-out 0.2s both;
 }
 
-input{
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+input {
   width: 100%;
-  height: 40px;
+  height: 48px;
   width: 500px;
-  border-radius: 5px;
-  border: 1px solid grey;
-  padding-left: 10px;
+  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 1rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: white;
+  color: #374151;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-button{
-  height: 40px;
-  padding: 5px;
-  width: 100px;
-  border-radius: 5px !important;
+input:hover {
+  border-color: #fca5a5;
+  box-shadow: 0 4px 12px rgba(255, 99, 71, 0.08);
+}
+
+input:focus {
+  outline: none;
+  border-color: #ff6347;
+  box-shadow: 0 0 0 4px rgba(255, 99, 71, 0.15), 0 4px 16px rgba(255, 99, 71, 0.2);
+  transform: translateY(-1px);
+}
+
+input::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+button {
+  height: 48px;
+  padding: 5px 24px;
+  width: 120px;
+  border-radius: 12px !important;
   border: none;
-  background-color: #ff6347;
+  background: linear-gradient(135deg, #ff6347 0%, #dc143c 50%, #ff4500 100%);
+  background-size: 200% 200%;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 6px 20px rgba(255, 99, 71, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 button:hover {
-  background-color: #e5533b;
+  background-position: 100% 50%;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(255, 99, 71, 0.5);
 }
 
-.meals{
+button:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 4px 12px rgba(255, 99, 71, 0.4);
+}
+
+.meals {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 35px;
+  padding: 20px;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
 }
 
-.mealCard{
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mealCard {
   display: flex;
   width: 300px;
   height: 400px;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
   overflow: hidden;
+  background: white;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  border: 1px solid rgba(255, 99, 71, 0.1);
 }
 
-.mealCard p{
-  font-weight: 550;
+.mealCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6347 0%, #dc143c 50%, #ff8c00 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.mealCard:hover::before {
+  opacity: 1;
+}
+
+.mealCard:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2), 0 10px 20px rgba(255, 99, 71, 0.15);
+  border-color: rgba(255, 99, 71, 0.3);
+}
+
+.mealCard img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(0.95);
+}
+
+.mealCard:hover img {
+  transform: scale(1.15) rotate(1deg);
+  filter: brightness(1) saturate(1.1);
+}
+
+.mealCard p {
+  font-weight: 600;
   margin-bottom: -10px;
+  color: #1f2937;
+  font-size: 1.15rem;
+  padding: 0 20px;
+  line-height: 1.5;
+  transition: color 0.3s ease;
 }
 
-.mealCard button{
+.mealCard:hover p {
+  color: #ff6347;
+}
+
+.mealCard button {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-left: 100px;
   margin-bottom: 15px;
   margin-top: 10px;
+  width: 100px;
+  height: 42px;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(255, 99, 71, 0.3);
 }
 
-.mealInfo{
+.mealCard button:hover {
+  box-shadow: 0 6px 18px rgba(255, 99, 71, 0.45);
+}
+
+.mealInfo {
   width: 100%;
   display: flex;
   gap: 30px;
@@ -93,26 +271,46 @@ button:hover {
   margin-top: 30px;
 }
 
-.info{
+.info {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 30px;
+  animation: fadeIn 0.8s ease-out;
 }
 
-.info h1{
+.info h1 {
   font-size: 30px;
 }
 
-.info button{
+.info button {
   width: auto;
+  padding: 12px 28px;
 }
 
-.meal-img{
+.meal-img {
   width: 600px;
   height: 600px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 3px solid white;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.meal-img:hover {
+  transform: scale(1.03) rotate(-1deg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 8px 20px rgba(255, 99, 71, 0.2);
+}
+
+/* Loading animation for cards */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
 }
 
 /* Media query for phones */
@@ -123,29 +321,32 @@ button:hover {
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     margin-bottom: 15px;
   }
 
   .container {
     flex-direction: column;
     width: 100%;
-    gap: 10px;
+    gap: 12px;
   }
 
   input {
     width: 100%;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    height: 48px;
   }
 
   button {
     width: 100%;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    height: 48px;
   }
 
   .meals {
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 25px;
+    padding: 10px;
   }
 
   .mealCard {
@@ -154,14 +355,21 @@ button:hover {
     gap: 10px;
   }
 
+  .mealCard:hover {
+    transform: translateY(-8px) scale(1.01);
+  }
+
   .mealCard p {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .mealCard button {
     margin-left: 0;
     margin-bottom: 10px;
     margin-top: 5px;
+    width: calc(100% - 30px);
+    margin-left: 15px;
+    margin-right: 15px;
   }
 
   .mealInfo {
@@ -188,4 +396,71 @@ button:hover {
   .info button {
     width: 100%;
   }
+}
+
+/* Additional enhancements for medium screens */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    width: 90%;
+  }
+
+  .meals {
+    gap: 30px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1400px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  .meals {
+    gap: 40px;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 3px solid #ff6347;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(255, 99, 71, 0.3);
+  color: #1f2937;
+}
+
+::-moz-selection {
+  background: rgba(255, 99, 71, 0.3);
+  color: #1f2937;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff6347 0%, #dc143c 100%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #e5533b 0%, #c41230 100%);
 }
